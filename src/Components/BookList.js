@@ -40,9 +40,10 @@ import React, { Component } from 'react'
 // }
 
 
-class BookItem extends Component {
- render() {
-const book = this.props.books;
+class BookGrid extends Component {
+  render() {
+    const book = this.props.books
+
     return (
       <li>
         <div className="book">
@@ -57,32 +58,32 @@ const book = this.props.books;
                 <option value="none">None</option>
               </select>
             </div>
+            </div>
+            <div className="book-title">{book.title}</div>
+            <div className="book-authors">{book.authers}</div>
           </div>
-          <div className="book-title">{book.title}</div>
-          <div className="book-authors">{book.authers}</div>
-        </div>
-      </li>
+        </li>
     )
   }
 }
+
 class BookList extends Component {
-
   render() {
-
-
     return (
       <div className="list-books">
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
+        <div className="list-books-content">
           <div className="list-books-content">
             <ol className="books-grid">
               {this.props.books.map((book) => (
-                <BookItem key={book.id} books={book}/>
+                <BookGrid key={book.id} books={book}/>
               ))}
             </ol>
         </div>
       </div>
+    </div>
     )
   }
 }
