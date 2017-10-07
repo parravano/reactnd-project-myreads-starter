@@ -18,12 +18,10 @@ class BooksApp extends Component {
    })
  }
 
-
-
  render() {
     return (
       <div className="app">
-        <BookList books={this.state.books}/>
+        <BookList books={this.state.books} />
         {/* <BookSearch /> */}
       </div>
   )}
