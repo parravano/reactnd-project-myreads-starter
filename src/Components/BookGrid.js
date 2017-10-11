@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class BookShelf extends Component {
+class BookGrid extends Component {
 
   render() {
     const {book} = this.props
@@ -27,4 +27,4 @@ class BookShelf extends Component {
   }
 }
 
-export default BookShelf
+export default BookGrid
