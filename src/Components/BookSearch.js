@@ -5,7 +5,6 @@ class BookSearch extends Component {
 
     return(
       <div className="search-books">
-
         <div className="search-books-bar">
           <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
           <div className="search-books-input-wrapper">
@@ -25,7 +24,6 @@ class BookSearch extends Component {
           <ol className="books-grid"></ol>
         </div>
       </div>
-
     )
   }
 }
