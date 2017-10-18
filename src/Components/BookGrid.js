@@ -1,10 +1,18 @@
 import React, {Component} from 'react'
+import * as BooksAPI from '../BooksAPI'
 
 class BookGrid extends Component {
 
+  updateShelf = (event) => {
+  const { book, onUpdateShelf } = this.props;
+  let shelf = event.target.value;
+  BooksAPI.update(book, shelf).then(() => {
+    onUpdateShelf(book, shelf);
+  });
+};
 
   render() {
-    const {book} = this.props
+    const { book } = this.props
 
     return (
       <li>
@@ -12,7 +20,7 @@ class BookGrid extends Component {
           <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks})` }}></div>
             <div className="book-shelf-changer">
-              <select value={book.shelf} onChange={(e) => this.state.onUpdateShelf(book, event.target.value)}>
+              <select value={book.shelf} onChange={this.updateShelf}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>

@@ -20,9 +20,6 @@ class BookSearch extends Component {
               placeholder="Search by title or author"/>
           </div>
         </div>
-        <div className="search-books-results">
-          <ol className="books-grid"></ol>
-        </div>
       </div>
     )
   }
