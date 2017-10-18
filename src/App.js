@@ -22,8 +22,7 @@ class BooksApp extends Component {
  updateShelf = (book, shelf) => {
     book.shelf = shelf
     this.setState(state => ({
-      books: state.books
-      // books: state.books.filter(b => b.id !== book.id).concat([book])
+      books: state.books.filter(b => b.id !== book.id).concat([book])
     }));
   };
 
@@ -31,8 +30,8 @@ class BooksApp extends Component {
 
  render() {
 
-  //  const bookShelves = [ 'currentlyReading', 'Want to Read', 'read']
-   const bookShelves = [{'title': 'Currently Reading', 'select':'currentlyReading'}, { 'title': 'want To Read', 'select': 'Want to Read'}, {'title': 'Read', 'select':'read'}]
+  //  const bookShelves = [ 'currentlyReading', 'wantToRead', 'read']
+   const bookShelves = [{'title': 'Currently Reading', 'select':'currentlyReading'}, { 'title': 'Want To Read', 'select': 'wantToRead'}, {'title': 'Read', 'select':'read'}]
 
 
     return (
