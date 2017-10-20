@@ -7,9 +7,9 @@ class BookGrid extends Component {
   const { book, onUpdateShelf } = this.props;
   let shelf = event.target.value;
   BooksAPI.update(book, shelf).then(() => {
-    onUpdateShelf(book, shelf);
-  });
-};
+    onUpdateShelf(book, shelf)
+  })
+}
 
   render() {
     const { book } = this.props
