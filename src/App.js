@@ -1,7 +1,7 @@
 import React, { Component }from 'react'
 import * as BooksAPI from './BooksAPI'
 import BookList from './Components/BookList'
-// import BookSearch from './Components/BookSearch'
+import BookSearch from './Components/BookSearch'
 import './App.css'
 
 
@@ -9,6 +9,7 @@ class BooksApp extends Component {
 
  state = {
     books: []
+
   }
 
 
@@ -28,23 +29,24 @@ class BooksApp extends Component {
 
 
 
+
  render() {
-
-  //  const bookShelves = [ 'currentlyReading', 'wantToRead', 'read']
-   const bookShelves = [{'title': 'Currently Reading', 'select':'currentlyReading'}, { 'title': 'Want To Read', 'select': 'wantToRead'}, {'title': 'Read', 'select':'read'}]
-
 
     return (
 
       <div className="app">
-        <BookList
+        {/* <BookList
           books={ this.state.books }
-          bookShelves={bookShelves}
           onUpdateShelf={(book, shelf) => {
             this.updateShelf(book, shelf)
           }}
-          />
-        {/* <BookSearch books={this.state.books}/> */}
+          /> */}
+        <BookSearch
+          books={this.state.books}
+          onUpdateShelf={(book, shelf) => {
+            this.updateShelf(book, shelf)
+          }}
+        />
       </div>
   )}
 }

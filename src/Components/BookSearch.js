@@ -4,13 +4,33 @@ class BookSearch extends Component {
 
     state = {
       query: '',
-      books: []
+      results: []
     }
 
-    updateQuery = (query) => {
+    updateQuery = query => {
       this.setState({ query: query })
     }
 
+   getResults = query => {
+      if(query === '') {
+        this.setSet({ query: '', books: [] })
+      } else {
+        BooksAPI.search(query, 20).then( results  => {
+          if (results.length > 0) {
+            results = results.map(result => {
+            for (let book of this.props.books)
+            if (result.shelf === book.shelf ) {
+              book.shelf = result.shelf
+            } else {
+              result.shelf = 'none'
+            }
+            return result
+            })
+          }
+          this.setState({ results: results})
+        })
+      }
+    }
 
   render() {
     const { query } = this.state
