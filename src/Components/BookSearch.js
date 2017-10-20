@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import BookGrid from './BookGrid'
 import * as BooksAPI from '../BooksAPI'
+import escapeRegExp from 'escape-string-regexp'
+
 class BookSearch extends Component {
 
     state = {
@@ -7,33 +10,37 @@ class BookSearch extends Component {
       results: []
     }
 
-    updateQuery = query => {
-      this.setState({ query: query })
-    }
 
-   getResults = query => {
-      if(query === '') {
-        this.setSet({ query: '', books: [] })
-      } else {
-        BooksAPI.search(query, 20).then( results  => {
+
+   onUpdateQuery = query => {
+    if(query === '' ) {
+      this.setSet({ query: '', results: [] })
+    } else {
+      BooksAPI.search(query, 20).then( results  => {
+        if (results.error){
+          console.log(results.error)
+          results = []
+        } else {
           if (results.length > 0) {
             results = results.map(result => {
             for (let book of this.props.books)
             if (result.shelf === book.shelf ) {
               book.shelf = result.shelf
-            } else {
-              result.shelf = 'none'
+              } else {
+                result.shelf = 'none'
+              }
+                return result
+              })
             }
-            return result
-            })
           }
           this.setState({ results: results})
         })
+        this.setState({query})
       }
     }
 
   render() {
-    const { query } = this.state
+    const { results, query } = this.state
 
     return(
       <div className="search-books">
@@ -42,13 +49,22 @@ class BookSearch extends Component {
           <div className="search-books-input-wrapper">
 
             <input
-              onChange={(event) => this.updateQuery(event.target.value) }
+              onChange={(event) => this.onUpdateQuery(event.target.value) }
               value={query}
               type="text"
               placeholder="Search by title or author"/>
           </div>
         </div>
         <div className="search-books-results">
+          <ol className="books-grid">
+            {results.map((result) => (
+              <BookGrid
+                key={result.id}
+                book={result}
+                onUpdateShelf={this.props.onUpdateShelf}
+              />
+            ))}
+          </ol>
         </div>
       </div>
     )
