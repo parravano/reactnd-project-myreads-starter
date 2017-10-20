@@ -6,7 +6,6 @@ class BookShelf extends Component {
   render () {
     const {shelfTitle} = this.props
     return (
-      // if maping through self add key key={shelfTitle}
         <div  className="bookshelf">
           <h2 className="bookshelf-title">{shelfTitle}</h2>
             <div className="bookshelf-books">
