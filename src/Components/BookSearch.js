@@ -10,17 +10,23 @@ class BookSearch extends Component {
       results: []
     }
 
+    onSearchForBook = event => {
+      event.preventDefault();
+      let query = event.target.value;
+      this.setState({ query: query })
+      query = query.trim()
+      this.getBooks(query)
+    }
 
-
-    onUpdateQuery = query => {
-         if(query === '') {
-           this.setSet({ query: '', books: [] })
+    getBooks = query => {
+      if(query === '') {
+         this.setState({ results: [] })
          } else {
            BooksAPI.search(query, 20).then( results  => {
              if (results.length > 0) {
                results = results.map(result => {
                for (let book of this.props.books)
-               if (result.shelf === book.shelf ) {
+                if (result.shelf === book.shelf ) {
                  book.shelf = result.shelf
                } else {
                  result.shelf = 'none'
@@ -30,10 +36,12 @@ class BookSearch extends Component {
              }
              this.setState({ results: results})
            })
-           this.setState({query: event.target.value})
          }
        }
 
+       onClearQuery = event => {
+         this.setState({ query: '', results: [] })
+       }
 
   render() {
     const { results, query } = this.state
@@ -41,11 +49,11 @@ class BookSearch extends Component {
     return(
       <div className="search-books">
         <div className="search-books-bar">
-          <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+          <a className="close-search" onClick={this.onClearQuery}>Close</a>
           <div className="search-books-input-wrapper">
 
             <input
-              onChange={(event) => this.onUpdateQuery(event.target.value) }
+              onChange={this.onSearchForBook}
               value={query}
               type="text"
               placeholder="Search by title or author"/>
