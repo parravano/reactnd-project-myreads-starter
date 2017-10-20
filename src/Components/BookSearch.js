@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import BookGrid from './BookGrid'
 import * as BooksAPI from '../BooksAPI'
+<<<<<<< HEAD
 import escapeRegExp from 'escape-string-regexp'
 
+||||||| merged common ancestors
+=======
+
+
+>>>>>>> a45a81c249cc5659160dbfc4f79b5f187d7eea51
 class BookSearch extends Component {
 
     state = {
@@ -10,7 +16,20 @@ class BookSearch extends Component {
       results: []
     }
 
+<<<<<<< HEAD
+||||||| merged common ancestors
+    updateQuery = query => {
+      this.setState({ query: query })
+    }
+=======
+    onUpdateQuery = query => {
+    if(query === '' ) {
+      this.setSet({ query: '', results: [] })
+    } else {
+      BooksAPI.search(query, 20).then( results  => {
+>>>>>>> a45a81c249cc5659160dbfc4f79b5f187d7eea51
 
+<<<<<<< HEAD
 
    onUpdateQuery = query => {
     if(query === '' ) {
@@ -21,6 +40,14 @@ class BookSearch extends Component {
           console.log(results.error)
           results = []
         } else {
+||||||| merged common ancestors
+   getResults = query => {
+      if(query === '') {
+        this.setSet({ query: '', books: [] })
+      } else {
+        BooksAPI.search(query, 20).then( results  => {
+=======
+>>>>>>> a45a81c249cc5659160dbfc4f79b5f187d7eea51
           if (results.length > 0) {
             results = results.map(result => {
             for (let book of this.props.books)
@@ -32,7 +59,14 @@ class BookSearch extends Component {
                 return result
               })
             }
+<<<<<<< HEAD
           }
+||||||| merged common ancestors
+            return result
+            })
+          }
+=======
+>>>>>>> a45a81c249cc5659160dbfc4f79b5f187d7eea51
           this.setState({ results: results})
         })
         this.setState({query})
