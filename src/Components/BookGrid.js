@@ -1,7 +1,12 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import * as BooksAPI from '../BooksAPI'
 
 class BookGrid extends Component {
+  static PropTypes = {
+    book: PropTypes.array.isRequired,
+    onUpdateShelf: PropTypes.func.isRequired
+  }
 
   updateShelf = (event) => {
   const { book, onUpdateShelf } = this.props

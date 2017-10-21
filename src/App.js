@@ -10,16 +10,13 @@ class BooksApp extends Component {
 
  state = {
     books: []
-
   }
-
 
  componentDidMount() {
    BooksAPI.getAll().then(books => {
      this.setState({ books })
    })
  }
-
 
  updateShelf = (book, shelf) => {
     book.shelf = shelf
@@ -28,33 +25,30 @@ class BooksApp extends Component {
     }));
   };
 
-
-
-
  render() {
 
-    return (
+  return (
 
-      <div className="app">
-        <Route exact path='/' render={() => (
-          <BookList
-            books={ this.state.books }
-            onUpdateShelf={(book, shelf) => {
-              this.updateShelf(book, shelf)
-            }}
-          />
-        )}/>
-        <Route path='/search' render={() => (
-          <BookSearch
-            books={this.state.books}
-            onUpdateShelf={(book, shelf) => {
-              this.updateShelf(book, shelf)
-            }}
-          />
-        )}/>
-
-      </div>
-  )}
+    <div className="app">
+      <Route exact path='/' render={() => (
+        <BookList
+          books={ this.state.books }
+          onUpdateShelf={(book, shelf) => {
+            this.updateShelf(book, shelf)
+          }}
+        />
+      )}/>
+      <Route path='/search' render={() => (
+        <BookSearch
+          books={this.state.books}
+          onUpdateShelf={(book, shelf) => {
+            this.updateShelf(book, shelf)
+          }}
+        />
+      )}/>
+    </div>
+    )
+  }
 }
 
 

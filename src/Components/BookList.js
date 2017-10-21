@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
 
 class BookList extends Component {
-  render() {
+    static PropTypes = {
+      books: PropTypes.array.isRequired,
+      onUpdateShelf: PropTypes.array.isRequired
+    }
 
+  render() {
     const bookShelves = [{'title': 'Currently Reading', 'select':'currentlyReading'}, { 'title': 'Want To Read', 'select': 'wantToRead'}, {'title': 'Read', 'select':'read'}]
 
     return (
@@ -13,22 +18,22 @@ class BookList extends Component {
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
-          <div className="list-books-content">
-           {bookShelves.map((bookShelf) => {
-              let filterBooks = this.props.books.filter(b => b.shelf === bookShelf.select)
-               return (
-                <BookShelf
-                  key={bookShelf.select}
-                  books={filterBooks}
-                  shelfTitle={bookShelf.title}
-                  onUpdateShelf={this.props.onUpdateShelf}
-            />
-          );
-        })}
-      </div>
-      <div className="open-search">
-        <Link to='/search'>Add a book</Link>
-      </div>
+        <div className="list-books-content">
+         {bookShelves.map((bookShelf) => {
+            let filterBooks = this.props.books.filter(b => b.shelf === bookShelf.select)
+             return (
+              <BookShelf
+                key={bookShelf.select}
+                books={filterBooks}
+                shelfTitle={bookShelf.title}
+                onUpdateShelf={this.props.onUpdateShelf}
+              />
+            )
+          })}
+        </div>
+        <div className="open-search">
+          <Link to='/search'>Add a book</Link>
+        </div>
     </div>
     )
   }
@@ -69,9 +74,5 @@ class BookList extends Component {
 //     )
 //   }
 // }
-
-
-
-
 
 export default BookList
