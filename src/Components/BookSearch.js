@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import BookGrid from './BookGrid'
+import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
-
+import BookGrid from './BookGrid'
 
 class BookSearch extends Component {
 
@@ -11,8 +11,8 @@ class BookSearch extends Component {
     }
 
     onSearchForBook = event => {
-      event.preventDefault();
-      let query = event.target.value;
+      event.preventDefault()
+      let query = event.target.value
       this.setState({ query: query })
       query = query.trim()
       this.getBooks(query)
@@ -49,7 +49,7 @@ class BookSearch extends Component {
     return(
       <div className="search-books">
         <div className="search-books-bar">
-          <a className="close-search" onClick={this.onClearQuery}>Close</a>
+          <Link to='/' className="close-search" onClick={this.onClearQuery}>Close</Link>
           <div className="search-books-input-wrapper">
 
             <input

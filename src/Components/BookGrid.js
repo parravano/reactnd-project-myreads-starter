@@ -4,8 +4,8 @@ import * as BooksAPI from '../BooksAPI'
 class BookGrid extends Component {
 
   updateShelf = (event) => {
-  const { book, onUpdateShelf } = this.props;
-  let shelf = event.target.value;
+  const { book, onUpdateShelf } = this.props
+  let shelf = event.target.value
   BooksAPI.update(book, shelf).then(() => {
     onUpdateShelf(book, shelf)
   })

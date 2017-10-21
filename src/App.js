@@ -1,4 +1,5 @@
-import React, { Component }from 'react'
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import BookList from './Components/BookList'
 import BookSearch from './Components/BookSearch'
@@ -35,18 +36,23 @@ class BooksApp extends Component {
     return (
 
       <div className="app">
-        {/* <BookList
-          books={ this.state.books }
-          onUpdateShelf={(book, shelf) => {
-            this.updateShelf(book, shelf)
-          }}
-          /> */}
-        <BookSearch
-          books={this.state.books}
-          onUpdateShelf={(book, shelf) => {
-            this.updateShelf(book, shelf)
-          }}
-        />
+        <Route exact path='/' render={() => (
+          <BookList
+            books={ this.state.books }
+            onUpdateShelf={(book, shelf) => {
+              this.updateShelf(book, shelf)
+            }}
+          />
+        )}/>
+        <Route path='/search' render={() => (
+          <BookSearch
+            books={this.state.books}
+            onUpdateShelf={(book, shelf) => {
+              this.updateShelf(book, shelf)
+            }}
+          />
+        )}/>
+
       </div>
   )}
 }
