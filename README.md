@@ -2,6 +2,9 @@
 ## About
 MyReads is an app to track books that a reader has read or would like to read.
 
+* Move books between bookshelves (read, want to read, or currently reading).
+* Search for additional books and add them to one of your bookshelves.
+
 ## Installation
 *  Clone the repository
 *  Navigate to app folder in terminal
