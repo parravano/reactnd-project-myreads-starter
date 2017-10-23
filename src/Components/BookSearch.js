@@ -30,8 +30,8 @@ class BookSearch extends Component {
           if (results.length > 0) {
             results = results.map(result => {
              for (let book of this.props.books)
-              if (result.shelf === book.shelf ) {
-               book.shelf = result.shelf
+              if ( result.shelf === book.shelf) {
+                result.shelf = book.shelf
               } else {
                result.shelf = 'none'
               }
